@@ -21,11 +21,6 @@ class Application:
         model = CoffeeHouse()
         model.setVisitorGenerator(VisitorGenerator(model))
 
-
-        cashDesk = CashDesk()
-        cashDesk.setWorker(Worker(model, cashDesk))
-        model.addCashDesk(cashDesk)
-
         cashDesk = CashDesk()
         cashDesk.setWorker(Worker(model, cashDesk))
         model.addCashDesk(cashDesk)
@@ -45,8 +40,15 @@ class Application:
         coffeeMachine = KitchenMachine("Кофемашина")
         cappuccinatore = KitchenMachine("Капучинатор")
 
-        model.addRecipe(Product("Эспрессо", True), Recipe().addStep(RecipeStep(coffeeBeans, 5, coffeeMachine, 120)))
-        model.addRecipe(Product("Раф кофе", True), Recipe().addStep(RecipeStep(syrup, 10, None, 10)).addStep(RecipeStep(coffeeBeans, 5, coffeeMachine, 120)).addStep(RecipeStep(milk, 10, cappuccinatore, 100)))
-        model.addRecipe(Product("Каппучино", True), Recipe().addStep(RecipeStep(coffeeBeans, 5, coffeeMachine, 120)).addStep(RecipeStep(milk, 10, None, 10)).addStep(RecipeStep(milk, 10, cappuccinatore, 100)))
+        model.addRecipe(Product("Эспрессо", True),
+                        Recipe().addStep(RecipeStep(coffeeBeans, 5, coffeeMachine, 120)))
+        model.addRecipe(Product("Раф кофе", True),
+                        Recipe().addStep(RecipeStep(syrup, 10, None, 10))
+                        .addStep(RecipeStep(coffeeBeans, 5, coffeeMachine, 120))
+                        .addStep(RecipeStep(milk, 10, cappuccinatore, 100)))
+        model.addRecipe(Product("Каппучино", True),
+                        Recipe().addStep(RecipeStep(coffeeBeans, 5, coffeeMachine, 120))
+                        .addStep(RecipeStep(milk, 10, None, 10))
+                        .addStep(RecipeStep(milk, 10, cappuccinatore, 100)))
 
         return model
